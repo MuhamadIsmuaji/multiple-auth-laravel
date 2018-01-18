@@ -5,6 +5,9 @@ namespace App\Http\Controllers\AuthAdmin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\User;
+use App\Mail\Welcome;
 
 class LoginController extends Controller
 {
@@ -22,7 +25,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest:admin')->except('logout');
+        $this->middleware('guest:admin')->except(['logout', 'sendMail']);
     }
 
     /**
@@ -64,5 +67,16 @@ class LoginController extends Controller
         Auth::guard('admin')->logout();
 
         return redirect('/');
+    }
+
+    public function sendMail()
+    {
+        $user = User::create([
+            'name' => 'coba send email',
+            'email' => 'coba@test.com',
+            'password' => bcrypt('secret'),
+        ]);
+
+        Mail::to($user)->send(new Welcome);
     }
 }
