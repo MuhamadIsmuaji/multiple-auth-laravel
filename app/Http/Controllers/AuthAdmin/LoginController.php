@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\AuthAdmin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\Welcome;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use App\User;
-use App\Mail\Welcome;
 
 class LoginController extends Controller
 {

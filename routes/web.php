@@ -34,3 +34,6 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 Route::get('/admin/sendmail', 'AuthAdmin\LoginController@sendmail')->name('admin.sendmail');
+
+Route::get('/kurir', 'KurirController@index')->name('kurir.index');
+Route::get('/kurir/sendmail', 'KurirController@sendMail')->name('kurir.sendmail');
